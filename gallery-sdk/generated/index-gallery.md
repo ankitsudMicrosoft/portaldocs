@@ -1,5 +1,6 @@
 * [Gallery Overview](#gallery-overview)
     * [OnBoarding to the Gallery](#gallery-overview-onboarding-to-the-gallery)
+    * [Updated Azure Package Publishing Process (May 2019 Onwards)](#gallery-updated-publishing-process)
     * [Gallery Experience](#gallery-overview-gallery-experience)
     * [Gallery Service](#gallery-overview-gallery-service)
 * [Gallery Item Specificiations](#gallery-item-specificiations)
@@ -42,6 +43,7 @@
   <p class="wa-linkArray">
     Related documents:
     <a href="/documentation/articles/gallery-overview">Overview</a>
+    <a href="/documentation/articles/gallery-updated-publishing-process">Updates Publishing Process for Production</a>
     <a href="/documentation/articles/gallery-release-notes">Release Notes</a>
     <a href="/documentation/articles/gallery-items">Gallery Items</a>
     <a href="/documentation/articles/gallery-metadata">Gallery Metadata</a>
@@ -57,8 +59,36 @@
 
 The gallery is the single place where users will go to find anything that can be created. The gallery includes both the create hub as well as the gallery blades. The entire gallery is driven from the gallery service which serves both gallery items and curation data. Placement of your resource or app in the gallery is driven by a controlled curation process.
 
-
 > [WACOM.NOTE] In order to receive important notices and alerts about the gallery service, please subscribe to the [Azure Gallery Announcements](http://idwebelements/GroupManagement.aspx?Group=azuregallery&Operation=join) alias.
+
+<a name="gallery-updated-publishing-process"></a>
+# Azure Package Publishing Process (Starting May 2019)
+
+## New Process 
+
+Starting <b>1st May 2019</b>, Gallery is switching the process of publishing to Azure Production. Packages would only be received via ICM for making updates to Azure Production Clouds. If you publish a product to Microsoft Azure directly without going through Cloud Partner Portal, these changes impact you.
+
+### Package Update SLAs
+The following SLAs would be provided for these incidents:
+
+* Regular Package Update	- 48 business hours
+* Urgent Package Updates	- 24 business hours
+* Live Site - Case by Case basis, please email 1storehot after opening ICM.
+
+### Steps to Update
+-  Go through the gallery documentation here to create your package: https://aka.ms/GalleryDocs 
+-  Log onto ICM and use the template here to create an incident: https://aka.ms/UpdateGalleryPackage 
+-  Create an incident for each cloud and ensure the correct package is attached to each incident.
+-  You may attach multiple packages to 1 incident as long as you are updating the same cloud (Public/Fairfax/Blackforest/Mooncake)
+-  Ensure the right cloud instance is selected and environment is PROD.
+-  Select deployment priority and submit the incident. No need to fill the fields for ‘service category azure’
+-  Once your update is processed, the incident will be updated with confirmation of the changes and closed. You may reactivate the incident with information if you see any issues.
+
+### Other Important Points
+
+-	Business justifications must be provided for expedited requests and will be tracked at SHR level. Enter N/A for normal priority. 
+-	For events such as Build, Inspire etc. , the SLAs may be suspended due to package volume. Hence we recommend pushing your packages much in advance.
+-	The process to update packages in dogfood is fully self service and remains the same.
 
 <a name="gallery-overview-onboarding-to-the-gallery"></a>
 ## OnBoarding to the Gallery
@@ -361,7 +391,7 @@ To delete a azure gallery package run the following command.
 
 <a name="gallery-item-specificiations-gallery-package-management-configuring-the-azure-package-loader-tool"></a>
 #### Configuring the Azure Package Loader Tool
-In order to use the gallery loader you will need to set some values in the AzureGallery.exe.config file. You can <a href="https://auxdocs.azurewebsites.net/en-us/Downloads/DownloadGallery" target="_blank">download the test certificate here</a>. In order to publish to production, you must contact the [1store team](mailto:1store@microsoft.com).
+In order to use the gallery loader you will need to set some values in the AzureGallery.exe.config file. You can <a href="https://auxdocs.azurewebsites.net/en-us/Downloads/DownloadGallery" target="_blank">download the test certificate here</a>. In order to publish to production, you must contact the [1store team](mailto:1store@microsoft.com). From May 2019,  use the new [Updated Azure Package Publishing Process](#gallery-updated-publishing-process) 
 
 ```xml
 <appSettings>
@@ -882,7 +912,7 @@ You will need to create your own gallery items for your resources. You can find 
 
 <a name="gallery-frequently-asked-questions-how-do-i-authenticate-to-the-gallery-service-to-publish-my-gallery-items"></a>
 #### How do I authenticate to the gallery service to publish my gallery items?
-At this time, you will need a certificate that maps to each environment. You can <a href="https://auxdocs.azurewebsites.net/en-us/Downloads/DownloadGallery" target="_blank">download the test certificate here</a>. At this time, we do not allow partner teams to publish to the production service so you will need to contact [1store](mailto:1store@microsoft.com) to have your production gallery items published. We will change this soon so that each team will be able to manage their own production gallery assets.
+At this time, you will need a certificate that maps to each environment. You can <a href="https://auxdocs.azurewebsites.net/en-us/Downloads/DownloadGallery" target="_blank">download the test certificate here</a>. At this time, we do not allow partner teams to publish to the production service so you will need to contact [1store](mailto:1store@microsoft.com) to have your production gallery items published. Starting May 2019, use the [Updated Azure Package Publishing Process](#gallery-updated-publishing-process)
 
 <a name="gallery-frequently-asked-questions-do-i-have-to-have-publish-a-gallery-item-in-order-to-be-in-the-portal-gallery"></a>
 #### Do I have to have publish a gallery item in order to be in the portal gallery?
