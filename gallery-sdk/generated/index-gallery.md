@@ -368,6 +368,16 @@ To upload the package run the following command.
 > AzureGallery.exe upload -p ..\path\to\package.azpkg
 ```
 
+Provisioning your package to all the regions and Cache refresh might take up to 30 minutes to show up in Azure Marketplace. You can verify this using a public endpoints: 
+```
+https://df.gallery.azure-test.net/Microsoft.Gallery/Galleryitems/<galleryItemId>?api-version=2015-04-01
+```
+```
+https://df.catalogrp.azure-test.net/view/offers/<galleryItemId>?api-version=2018-08-01-beta
+```
+(Make sure to update the "**galleryItemId**" in the URI that you received when you uploaded the package. If you have added a hidekey, Please add an additional query parameter  `"HideKeys[0]=<your hidekey>"`
+
+
 <a name="gallery-item-specificiations-gallery-package-management-updating-hide-key-for-azure-gallery-package"></a>
 #### Updating hide key for Azure Gallery Package
 In order to add/update or remove a hide key or subscription filters associated with an item you will run the AzureGallery tool. To remove a hide key you need update the item and specify an empty key.
