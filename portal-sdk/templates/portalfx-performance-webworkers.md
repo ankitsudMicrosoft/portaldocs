@@ -14,18 +14,23 @@ The caveat is you are running in a webworker, which means you do not have to acc
 
 The other issue is that you are now running same-origin as the Portal, if you are trying to self build URIs using window.location your URIs will end up being relative to the Portal and fail. Additionally, your controllers and other ajax requests you might be making need to add portal to the list of domains that are allowed to call them. If you are making calls to third party services and they don’t support OPTIONS calls, then you may not be able to migrate. You can contact ibizaperfv@microsoft.com for help if you run into this issue.
 
-Webworkers might also differ from Iframes in other subtle ways and expose bugs in your code and portal/framework code based on your particular scenario. Once your extension is live in a webworker, treat this as no different than running in a new browser. If something breaks you might need to do a hotfix or workaround (sometimes even if the issue is in a library/Fx component that previously worked). Obviously the portal/Fx teams goal is to also fix all those issues and make the webworker/Iframe development/runtime experience be as transparent to your code as possible. But this cannot be done 100% of the time and therefore we even expose msportalfx.iswebworker for your code to be able to react to differences.
+Webworkers might also differ from Iframes in other subtle ways and expose bugs in your code and portal/framework code based on your particular scenario. Once your extension is live in a webworker, treat this as no different than running in a new browser. If something breaks you might need to do a hotfix or workaround (sometimes even if the issue is in a library/Fx component that previously worked). Obviously the Portal/Fx teams goal is to also fix all those issues and make the webworker/Iframe development/runtime experience be as transparent to your code as possible. But this cannot be done 100% of the time and therefore we even expose msportalfx.iswebworker for your code to be able to react to differences.
 
-With those two things in mind, to actually run your extension in a webworker, you should use the feature flag feature.prewarming=true,your_extension_name. This will force your extension to be run as a webworker. We recommend running through your entire test suite with this flag on. Also, make sure to step through and try this yourself by loading the portal in a browser and validating your core scenarios. Example: 
+With those two things in mind, to actually run your extension in a webworker, you should use the feature flag feature.prewarming=true,your_extension_name. This will force your extension to be run as a webworker. We recommend running through your entire test suite with this flag on. Also, make sure to step through and try this yourself by loading the portal in a browser and validating your core scenarios.
 
-When you’ve validated your extension works in a webworker, and you are ready to onboard, please approve this PR and we will create a PR that modifies your extension’s portal config to move your extension onto prewarming. We will wait for two engineering approvals from your team on this PR before merging it into dogfood/rc (please add other folks who you would like to verify and sign off). We will then create a second PR for the merge into MPAC and wait for another two approvals before merging it into MPAC.
-
+To onboard to prewarming, please ensure you are on an SDK greater than or equal to '5.0.302.19301'
 
 ### How to test/opt into web workers: 
 
 You can opt into this experience today via the below methods;
 1. Test locally using [https://ms.portal.azure.com?feature.prewarming=true,your_extension_name](https://ms.portal.azure.com?feature.prewarming=true,your_extension_name)
-1. Email the ibizaperfv@microsoft.com alias and request your extension be onboarded.
-1. We will respond with a PR which updates your config, we require two engineering PR approvals for your team before we complete it.
-1. This will enable your extension in our dogfood and rc environment
-1. Once you have validated your extension there we will follow the above PR process again to merge to MPAC and then repeat for PROD.
+
+1. Add the property "testPrewarming" with a value of true to the csproj file of your extension.
+
+1. Deploy the change to your production deployment, and prewarming will be enabled for your extension in RC and MPAC.
+
+1. Monitor for any problems that crop up.
+
+1. Rename the property "testPrewarming" to "enablePrewarming" and deploy the change, this will enable prewarming in PROD.
+
+1. Monitor for any problems, and roll back as necessary.
